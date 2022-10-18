@@ -28,6 +28,8 @@ public class AlipayController {
         return "123";
     }
 
+
+
     @RequestMapping("/zf")
     public void zf(HttpServletResponse response, HttpServletRequest request) throws IOException {
         AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl,AlipayConfig.app_id,AlipayConfig.merchant_private_key,"json",AlipayConfig.charset,AlipayConfig.alipay_public_key,AlipayConfig.sign_type);
@@ -40,7 +42,7 @@ public class AlipayController {
         bizContent.put("subject", "测试商品");
         bizContent.put("product_code", "FAST_INSTANT_TRADE_PAY");
         bizContent.put("body", "测试商品内容");
-
+        System.out.println("测试");
         //// 商品明细信息，按需传入
         //JSONArray goodsDetail = new JSONArray();
         //JSONObject goods1 = new JSONObject();
@@ -100,6 +102,7 @@ public class AlipayController {
 
         signVerified =true;
         if(signVerified) {
+
             //商户订单号
             String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
 
